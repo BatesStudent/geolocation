@@ -1,11 +1,7 @@
 //when the jQuery Mobile page is initialised
 $(document).on('pageinit', function() {
 	var watchID;
-    var locationOptions = {
-maximumAge: 10000,
-timeout: 6000,
-enableHighAccuracy: true
-};
+
 	//set up listener for button click
 	$('#getLocationButtonOn').on('click', getPosition);
     $('#getLocationButtonOff').on('click', clearPosition);
@@ -21,7 +17,11 @@ function getPosition() {
 	
 	//change time box to show updated message
 	$('#time').val("Getting data...");
-	
+	    var locationOptions = {
+maximumAge: 10000,
+timeout: 6000,
+enableHighAccuracy: true
+};
 	//instruct location service to get position with appropriate callbacks
     watchID = navigator.geolocation.watchPosition(success, fail, locationOptions);
 
