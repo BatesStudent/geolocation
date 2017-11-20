@@ -18,10 +18,10 @@ function getPosition() {
 	//change time box to show updated message
 	$('#time').val("Getting data...");
 	    var locationOptions = {
-maximumAge: 10000,
-timeout: 6000,
-enableHighAccuracy: true
-};
+            maximumAge: 10000,
+            timeout: 6000,
+            enableHighAccuracy: true
+            };
 	//instruct location service to get position with appropriate callbacks
     watchID = navigator.geolocation.watchPosition(success, fail, locationOptions);
 
@@ -29,7 +29,7 @@ enableHighAccuracy: true
 
 //Call this function when you want to get the current position
 function clearPosition() {
-	
+	alert("off");
 	navigator.geolocation.clearWatch(watchID);
 
 }
