@@ -1,8 +1,14 @@
 //when the jQuery Mobile page is initialised
 $(document).on('pageinit', function() {
-	
+	var watchID;
+    var locationOptions = {
+maximumAge: 10000,
+timeout: 6000,
+enableHighAccuracy: true
+};
 	//set up listener for button click
-	$(document).on('click', getPosition);
+	$('#getLocationButtonOn').on('click', getPosition);
+    $('#getLocationButtonOff').on('click', clearPosition);
 	
 	//change time box to show message
 	$('#time').val("Press the button to get location data");
@@ -17,12 +23,18 @@ function getPosition() {
 	$('#time').val("Getting data...");
 	
 	//instruct location service to get position with appropriate callbacks
-	navigator.geolocation.getCurrentPosition(successPosition, failPosition);
+    watchID = navigator.geolocation.watchPosition(success, fail, locationOptions);
+
 }
 
+//Call this function when you want to get the current position
+function clearPosition() {
+	
+	navigator.geolocation.clearWatch(watchID);
 
+}
 //called when the position is successfully determined
-function successPosition(position) {
+function success(position) {
 	
 	//You can find out more details about what the position obejct contains here:
 	// http://www.w3schools.com/html/html5_geolocation.asp
@@ -44,7 +56,7 @@ function successPosition(position) {
 }
 
 //called if the position is not obtained correctly
-function failPosition(error) {
+function fail(error) {
 	//change time box to show updated message
 	$('#time').val("Error getting data: " + error);
 	
