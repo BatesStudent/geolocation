@@ -41,6 +41,7 @@
      
     <div id="map"></div>
     <script>
+        $(document).on('pageinit', function() {
       var map;
       function initMap() {
           var home = {lat: 52.205815, lng: -2.171772};
@@ -62,6 +63,7 @@
             title: 'Hello Home!'
           });
       }
+        }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBefshIypnLFKRmRd2yOvk0zlYQwe2jf3o&callback=initMap"
     async defer></script>
